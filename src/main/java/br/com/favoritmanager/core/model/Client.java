@@ -6,31 +6,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Client {
+
+    public static final String NAME = "Name";
+    public static final String EMAIL = "Email";
+
     private Long id;
     private String name;
     private String email;
     private Set<Product> favoriteProducts = new HashSet<>();
 
     public Client(String name, String email) {
-        validValue(name, "Name");
+        validName(name);
         this.name = name;
-        validValue(email, "Email");
+        validEmail(email);
         this.email = email;
     }
 
     public Client(Long id, String name, String email) {
         this.id = id;
-        validValue(name, "Name");
+        validName(name);
         this.name = name;
-        validValue(email, "Email");
+        validEmail(email);
         this.email = email;
     }
 
     public Client(Long id, String name, String email, Set<Product> favoriteProducts) {
         this.id = id;
-        validValue(name, "Name");
+        validName(name);
         this.name = name;
-        validValue(email, "Email");
+        validEmail(email);
         this.email = email;
         this.favoriteProducts = favoriteProducts;
     }
@@ -60,9 +64,15 @@ public class Client {
         return this.favoriteProducts.add(favoriteProducts);
     }
 
-    private void validValue(String value, String type){
+    private void validName(String value){
         if (value == null || value.isEmpty()) {
-            throw new ValueIsEmptyOrBlankException(type);
+            throw new ValueIsEmptyOrBlankException("Invalid name: " + value);
         }
-    };
+    }
+
+    private void validEmail(String value) {
+        if (value == null || value.isEmpty() || !value.matches("^\\S+@\\S+\\.\\S+$")) {
+            throw new ValueIsEmptyOrBlankException("Invalid email: " + value + " | example: exemple@email.com");
+        }
+    }
 }
