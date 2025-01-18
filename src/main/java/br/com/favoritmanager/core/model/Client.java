@@ -1,8 +1,9 @@
 package br.com.favoritmanager.core.model;
 
-import br.com.favoritmanager.core.model.exception.ValueIsEmptyOrBlankException;
+import br.com.favoritmanager.core.exception.ValueIsEmptyOrBlankException;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Client {
@@ -49,6 +50,10 @@ public class Client {
 
     public Set<Product> getFavoriteProducts() {
         return favoriteProducts;
+    }
+
+    public void onlyRegister(Product favoriteProducts) {
+        this.favoriteProducts = Set.of(favoriteProducts);
     }
 
     public boolean addProductInFavorite(Product favoriteProducts) {

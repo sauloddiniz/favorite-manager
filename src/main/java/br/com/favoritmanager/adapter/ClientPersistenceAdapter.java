@@ -5,7 +5,7 @@ import br.com.favoritmanager.adapter.persistence.entity.ClientEntity;
 import br.com.favoritmanager.adapter.persistence.entity.mapper.ClientMapper;
 import br.com.favoritmanager.adapter.persistence.repository.ClientRepository;
 import br.com.favoritmanager.core.model.Client;
-import br.com.favoritmanager.core.model.exception.ClientNotFoundException;
+import br.com.favoritmanager.core.exception.ClientNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

@@ -1,9 +1,14 @@
 package br.com.favoritmanager.adapter.input;
 
+import br.com.favoritmanager.adapter.input.DTO.ClientAndListFavoritesResponseDTO;
 import br.com.favoritmanager.application.usecase.ProductUseCase;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@RequestMapping("/client/{clientId}/product")
+import java.net.URI;
+
+@RequestMapping("/client/{clientId}/favorites")
 @RestController
 public class FavoriteProductController {
 
@@ -13,9 +18,31 @@ public class FavoriteProductController {
         this.productUseCase = productUseCase;
     }
 
-    @PostMapping("/{productIdLuizaLabs}/favorite")
-    public String getItems(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
+    @PostMapping("/product/{productIdLuizaLabs}")
+    public ResponseEntity<Void> saveFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
         productUseCase.saveProduct(clientId, productIdLuizaLabs);
-        return "items";
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/client/{clientId}/favorites/product/{productIdLuizaLabs}")
+                .buildAndExpand(clientId.toString(), productIdLuizaLabs.toString())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/product/{productIdLuizaLabs}")
+    public ResponseEntity<Void> removeProductFavorites(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
+        productUseCase.removeProductFavorites(clientId, productIdLuizaLabs);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/product/{productIdLuizaLabs}")
+    public ResponseEntity<ClientAndListFavoritesResponseDTO> getFavorite(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
+        ClientAndListFavoritesResponseDTO response = productUseCase.getFavorite(clientId, productIdLuizaLabs);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping()
+    public ResponseEntity<ClientAndListFavoritesResponseDTO> GetFavorites(@PathVariable Long clientId) {
+        ClientAndListFavoritesResponseDTO response = productUseCase.getProducts(clientId);
+        return ResponseEntity.ok(response);
     }
 }

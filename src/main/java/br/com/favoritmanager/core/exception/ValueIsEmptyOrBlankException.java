@@ -1,4 +1,4 @@
-package br.com.favoritmanager.core.model.exception;
+package br.com.favoritmanager.core.exception;
 
 public class ValueIsEmptyOrBlankException extends RuntimeException {
 

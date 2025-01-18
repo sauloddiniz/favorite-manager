@@ -36,7 +36,7 @@ public class ProductEntity {
     @Column(name = "REVIEW_SCORE")
     private String reviewScore;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "CLIENT_ID")
     @EqualsAndHashCode.Include
     private ClientEntity client;

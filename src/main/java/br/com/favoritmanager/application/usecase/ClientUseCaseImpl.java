@@ -4,7 +4,7 @@ import br.com.favoritmanager.adapter.input.DTO.ClientResponseDTO;
 import br.com.favoritmanager.adapter.input.DTO.ClientRequestDTO;
 import br.com.favoritmanager.adapter.output.ClientPersistencePort;
 import br.com.favoritmanager.core.model.Client;
-import br.com.favoritmanager.core.model.exception.EmailAlreadyRegisterException;
+import br.com.favoritmanager.core.exception.EmailAlreadyRegisterException;
 import org.springframework.stereotype.Service;
 
 @Service

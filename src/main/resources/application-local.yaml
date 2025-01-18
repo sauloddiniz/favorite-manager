@@ -14,5 +14,5 @@ spring:
       ddl-auto: create-drop
 
 api:
-  url: "https://favorit-product-magalu.free.beeceptor.com"
+  url: "https://favorit-product-luiza-labs.free.beeceptor.com"
 

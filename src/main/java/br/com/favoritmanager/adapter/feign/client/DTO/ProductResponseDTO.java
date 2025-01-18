@@ -9,4 +9,8 @@ public record ProductResponseDTO(Long id, String image, Double price, String tit
     public static Product toProduct(ProductResponseDTO productResponseDTO) {
         return new Product(productResponseDTO.id(), productResponseDTO.image(), productResponseDTO.price(), productResponseDTO.title(), productResponseDTO.image());
     }
+
+    public static ProductResponseDTO toResponse(Product product) {
+        return new ProductResponseDTO(product.getProductIdLuizaLabs(), product.getImage(), product.getPrice(), product.getTitle(), product.getReviewScore());
+    }
 }
