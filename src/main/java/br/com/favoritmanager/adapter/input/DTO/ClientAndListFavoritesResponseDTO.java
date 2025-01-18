@@ -6,7 +6,6 @@ import br.com.favoritmanager.core.model.Client;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public record ClientAndListFavoritesResponseDTO(String name, String email, List<ProductResponseDTO> favoritesProducts) {
 
@@ -16,6 +15,6 @@ public record ClientAndListFavoritesResponseDTO(String name, String email, List<
                         .orElse(Set.of())
                         .stream()
                         .map(ProductResponseDTO::toResponse)
-                        .collect(Collectors.toList()));
+                        .toList());
     }
 }

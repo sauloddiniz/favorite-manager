@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductPersistenceAdapterTest {
+class ProductPersistenceAdapterTest {
 
     @Mock
     private ProductRepository productRepository;

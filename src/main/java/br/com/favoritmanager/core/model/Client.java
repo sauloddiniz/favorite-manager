@@ -3,7 +3,6 @@ package br.com.favoritmanager.core.model;
 import br.com.favoritmanager.core.exception.ValueIsEmptyOrBlankException;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Client {

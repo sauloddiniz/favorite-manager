@@ -2,9 +2,9 @@ package br.com.favoritmanager.core.exception;
 
 public class ProductNotAlreadyRegister extends RuntimeException {
 
-    private static final String message = "Product not already register: ";
+    private static final String MESSAGE = "Product not already register: ";
 
     public ProductNotAlreadyRegister(String productId) {
-        super(message.concat(productId));
+        super(MESSAGE.concat(productId));
     }
 }

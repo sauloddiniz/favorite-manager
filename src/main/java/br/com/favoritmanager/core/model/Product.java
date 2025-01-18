@@ -32,49 +32,26 @@ public class Product {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getImage() {
         return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getReviewScore() {
         return reviewScore;
     }
 
-    public void setReviewScore(String reviewScore) {
-        this.reviewScore = reviewScore;
-    }
-
     public Long getProductIdLuizaLabs() {
         return productIdLuizaLabs;
     }
 
-    public void setProductIdLuizaLabs(Long productIdLuizaLabs) {
-        this.productIdLuizaLabs = productIdLuizaLabs;
-    }
 
     public Client getClient() {
         return client;

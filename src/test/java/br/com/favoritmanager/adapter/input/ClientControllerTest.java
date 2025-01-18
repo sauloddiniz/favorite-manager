@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -118,7 +119,7 @@ class ClientControllerTest {
     @DisplayName("Return 404 status code when client is not found")
     void testGetClient_NotFound() throws Exception {
 
-        when(clientRepository.findById(1L))
+        when(clientRepository.findById(anyLong()))
                 .thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/client/1")
@@ -142,7 +143,7 @@ class ClientControllerTest {
                 .email("batman@morcegao.com")
                 .build();
 
-        when(clientRepository.findById(1L))
+        when(clientRepository.findById(anyLong()))
                 .thenReturn(Optional.of(existingClient));
         when(clientRepository.save(Mockito.any()))
                 .thenReturn(existingClient);
@@ -163,7 +164,7 @@ class ClientControllerTest {
                     }
                 """;
 
-        when(clientRepository.findById(1L))
+        when(clientRepository.findById(anyLong()))
                 .thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.put("/client/1")
@@ -188,8 +189,10 @@ class ClientControllerTest {
                 .email("batman@morcegao.com.br")
                 .build();
 
-        when(clientRepository.findById(1L)).thenReturn(Optional.of(existingClient));
-        when(clientRepository.existsByEmail(anyString())).thenReturn(true);
+        when(clientRepository.findById(anyLong()))
+                .thenReturn(Optional.of(existingClient));
+        when(clientRepository.existsByEmail(anyString()))
+                .thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/client/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -217,7 +220,7 @@ class ClientControllerTest {
     @Test
     @DisplayName("Throw 404 Not Found when attempting to delete a non-existent client")
     void testDeleteClient_NotFound() throws Exception {
-        when(clientRepository.findById(1L)).thenReturn(Optional.empty());
+        when(clientRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/client/1"))
                 .andExpect(status().isNotFound());

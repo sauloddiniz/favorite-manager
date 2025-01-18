@@ -3,6 +3,8 @@ package br.com.favoritmanager.adapter.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "PRODUCT")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -11,7 +13,7 @@ import lombok.*;
 @Setter
 @Getter
 @Builder
-public class ProductEntity {
+public class ProductEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
