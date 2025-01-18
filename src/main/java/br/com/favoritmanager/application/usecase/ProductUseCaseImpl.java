@@ -7,6 +7,7 @@ import br.com.favoritmanager.adapter.output.ProductClientPort;
 import br.com.favoritmanager.adapter.output.ProductPersistencePort;
 import br.com.favoritmanager.core.model.Client;
 import br.com.favoritmanager.core.model.Product;
+import br.com.favoritmanager.core.model.exception.ProductAlreadyExistException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,14 @@ public class ProductUseCaseImpl implements ProductUseCase {
     public void saveProduct(Long clientId, Long productLuizaLabsId) {
         Client client = clientPersistencePort.getClientById(clientId);
         Product product = productClientAdapter.getProductByIdLuizaLabs(productLuizaLabsId);
-        product.setClient(client);
+        boolean isSuccesses = client.addProductInFavorite(product);
+        validAddProductInFavorite(isSuccesses, productLuizaLabsId);
         productPersistencePort.saveProduct(product);
+    }
+
+    private void validAddProductInFavorite(boolean isSuccesses, Long productLuizaLabsId) {
+        if (Boolean.FALSE.equals(isSuccesses)) {
+            throw new ProductAlreadyExistException(productLuizaLabsId.toString());
+        }
     }
 }

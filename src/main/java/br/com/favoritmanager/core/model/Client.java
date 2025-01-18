@@ -9,7 +9,7 @@ public class Client {
     private Long id;
     private String name;
     private String email;
-    private Set<Product> items = new HashSet<>();
+    private Set<Product> favoriteProducts = new HashSet<>();
 
     public Client(String name, String email) {
         if (name == null || name.isEmpty()) {
@@ -28,6 +28,13 @@ public class Client {
         this.email = email;
     }
 
+    public Client(Long id, String name, String email, Set<Product> favoriteProducts) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.favoriteProducts = favoriteProducts;
+    }
+
     public Long getId() {
         return id;
     }
@@ -40,11 +47,12 @@ public class Client {
         return email;
     }
 
-    public Set<Product> getItems() {
-        return items;
+    public Set<Product> getFavoriteProducts() {
+        return favoriteProducts;
     }
 
-    public void setItems(Set<Product> items) {
-        this.items = items;
+    public boolean addProductInFavorite(Product favoriteProducts) {
+        favoriteProducts.setClient(this);
+        return this.favoriteProducts.add(favoriteProducts);
     }
 }

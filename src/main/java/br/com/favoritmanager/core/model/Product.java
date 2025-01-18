@@ -19,6 +19,15 @@ public class Product {
         this.reviewScore = reviewScore;
     }
 
+    public Product(Long id, Long productIdLuizaLabs, String image, Double price, String title, String reviewScore) {
+        this.id = id;
+        this.productIdLuizaLabs = productIdLuizaLabs;
+        this.image = image;
+        this.price = price;
+        this.title = title;
+        this.reviewScore = reviewScore;
+    }
+
     public Long getId() {
         return id;
     }
@@ -75,15 +84,16 @@ public class Product {
         this.client = client;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Product item = (Product) o;
-        return Objects.equals(id, item.id) && Objects.equals(image, item.image) && Objects.equals(price, item.price) && Objects.equals(title, item.title) && Objects.equals(reviewScore, item.reviewScore);
+        Product product = (Product) o;
+        return Objects.equals(productIdLuizaLabs, product.productIdLuizaLabs) && Objects.equals(price, product.price) && Objects.equals(title, product.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, image, price, title, reviewScore);
+        return Objects.hash(productIdLuizaLabs, price, title);
     }
 }

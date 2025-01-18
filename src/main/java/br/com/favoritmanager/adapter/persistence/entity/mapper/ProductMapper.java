@@ -23,4 +23,14 @@ public class ProductMapper {
                         .build())
                 .build();
     }
+
+    public static Product toModel(ProductEntity productEntity) {
+        return new Product(
+                productEntity.getProductId(),
+                productEntity.getProductIdLuizaLabs(),
+                productEntity.getImage(),
+                productEntity.getPrice(),
+                productEntity.getTitle(),
+                productEntity.getReviewScore());
+    }
 }

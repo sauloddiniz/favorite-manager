@@ -1,7 +1,8 @@
 package br.com.favoritmanager.configuration;
 
 import br.com.favoritmanager.core.model.exception.EmailAlreadyRegisterException;
-import br.com.favoritmanager.core.model.exception.EmptyResultDataAccessException;
+import br.com.favoritmanager.core.model.exception.ClientNotFoundException;
+import br.com.favoritmanager.core.model.exception.ProductAlreadyExistException;
 import br.com.favoritmanager.core.model.exception.ValueIsEmptyOrBlankException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -28,10 +29,16 @@ public class ExceptionHandlerMain {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ResponseEntity<Object> emptyResultDataAccessException(EmptyResultDataAccessException ex, HttpServletRequest request) {
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity<Object> emptyResultDataAccessException(ClientNotFoundException ex, HttpServletRequest request) {
         Map<String, Object> body = extractErrorInfo(ex, request);
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductAlreadyExistException.class)
+    public ResponseEntity<Object> productAlreadyExistException(ProductAlreadyExistException ex, HttpServletRequest request) {
+        Map<String, Object> body = extractErrorInfo(ex, request);
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
     }
 
     private static Map<String, Object> extractErrorInfo(Exception ex, HttpServletRequest request) {

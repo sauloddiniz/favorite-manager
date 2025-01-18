@@ -5,7 +5,7 @@ import br.com.favoritmanager.adapter.persistence.entity.ClientEntity;
 import br.com.favoritmanager.adapter.persistence.entity.mapper.ClientMapper;
 import br.com.favoritmanager.adapter.persistence.repository.ClientRepository;
 import br.com.favoritmanager.core.model.Client;
-import br.com.favoritmanager.core.model.exception.EmptyResultDataAccessException;
+import br.com.favoritmanager.core.model.exception.ClientNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -34,7 +34,7 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     public Client getClientById(Long id) {
         Optional<ClientEntity> entity = clientRepository.findById(id);
         return entity.map(ClientMapper::toModel)
-                .orElseThrow(() -> new EmptyResultDataAccessException(id.toString()));
+                .orElseThrow(() -> new ClientNotFoundException(id.toString()));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
         clientRepository.findById(id)
                 .ifPresentOrElse(clientRepository::delete,
                         () -> {
-                            throw new EmptyResultDataAccessException(id.toString());
+                            throw new ClientNotFoundException(id.toString());
                         });
     }
 }
