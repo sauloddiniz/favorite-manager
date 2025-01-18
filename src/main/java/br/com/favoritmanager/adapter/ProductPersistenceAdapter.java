@@ -6,7 +6,6 @@ import br.com.favoritmanager.adapter.persistence.entity.mapper.ProductMapper;
 import br.com.favoritmanager.adapter.persistence.repository.ProductRepository;
 import br.com.favoritmanager.core.model.Product;
 import jakarta.transaction.Transactional;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,9 +18,9 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
     }
 
     @Override
-    public Product saveProduct(Product product) {
+    public void saveProduct(Product product) {
         ProductEntity productEntity = ProductMapper.toEntity(product);
-        return ProductMapper.toModel(productRepository.save(productEntity));
+        ProductMapper.toModel(productRepository.save(productEntity));
     }
 
     @Override
