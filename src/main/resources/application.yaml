@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: "favorit-manager"
+  flyway:
+    enabled: true
+    locations: "classpath:db/migration"
