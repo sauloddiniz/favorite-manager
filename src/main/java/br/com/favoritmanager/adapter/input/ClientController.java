@@ -1,13 +1,16 @@
 package br.com.favoritmanager.adapter.input;
 
+import br.com.favoritmanager.adapter.input.DTO.ClientAndListFavoritesResponseDTO;
 import br.com.favoritmanager.adapter.input.DTO.ClientRequestDTO;
 import br.com.favoritmanager.adapter.input.DTO.ClientResponseDTO;
 import br.com.favoritmanager.application.usecase.ClientUseCase;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/client")
@@ -35,6 +38,11 @@ public class ClientController {
         return responseDTO == null ?
                 ResponseEntity.notFound().build() :
                 ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<ClientAndListFavoritesResponseDTO>> getAllClients(@PathParam("favorites") boolean favorites) {
+        return ResponseEntity.ok(clientUseCase.getAllClients(favorites));
     }
 
     @PutMapping("/{id}")

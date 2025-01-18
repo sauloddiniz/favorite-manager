@@ -104,7 +104,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ClientRequestDTO'
       responses:
-        204:
+        200:
           description: Cliente atualizado com sucesso
         400:
           description: Solicitação inválida

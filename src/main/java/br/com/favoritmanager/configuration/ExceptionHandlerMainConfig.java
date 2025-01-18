@@ -52,9 +52,10 @@ public class ExceptionHandlerMainConfig {
 
     private static Map<String, Object> extractErrorInfo(Exception ex, HttpServletRequest request) {
         Map<String, Object> body = new HashMap<>();
-        body.put("date-hour", LocalDateTime.now());
+        body.put("date", LocalDateTime.now());
         body.put("error", ex.getMessage());
         body.put("path", request.getRequestURI());
+        body.put("method", request.getMethod());
         return body;
     }
 

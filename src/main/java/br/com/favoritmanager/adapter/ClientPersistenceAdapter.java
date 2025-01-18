@@ -8,6 +8,7 @@ import br.com.favoritmanager.core.model.Client;
 import br.com.favoritmanager.core.exception.ClientNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -44,5 +45,11 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
                         () -> {
                             throw new ClientNotFoundException(id.toString());
                         });
+    }
+
+    @Override
+    public List<Client> findAll() {
+        List<ClientEntity> clientEntities = clientRepository.findAll();
+        return clientEntities.stream().map(ClientMapper::toModel).toList();
     }
 }

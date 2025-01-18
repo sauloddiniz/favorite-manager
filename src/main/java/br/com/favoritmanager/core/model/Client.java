@@ -12,25 +12,25 @@ public class Client {
     private Set<Product> favoriteProducts = new HashSet<>();
 
     public Client(String name, String email) {
-        if (name == null || name.isEmpty()) {
-            throw new ValueIsEmptyOrBlankException("Name");
-        }
+        validValue(name, "Name");
         this.name = name;
-        if (email == null || email.isEmpty()) {
-            throw new ValueIsEmptyOrBlankException("Email");
-        }
+        validValue(email, "Email");
         this.email = email;
     }
 
     public Client(Long id, String name, String email) {
         this.id = id;
+        validValue(name, "Name");
         this.name = name;
+        validValue(email, "Email");
         this.email = email;
     }
 
     public Client(Long id, String name, String email, Set<Product> favoriteProducts) {
         this.id = id;
+        validValue(name, "Name");
         this.name = name;
+        validValue(email, "Email");
         this.email = email;
         this.favoriteProducts = favoriteProducts;
     }
@@ -59,4 +59,10 @@ public class Client {
         favoriteProducts.setClient(this);
         return this.favoriteProducts.add(favoriteProducts);
     }
+
+    private void validValue(String value, String type){
+        if (value == null || value.isEmpty()) {
+            throw new ValueIsEmptyOrBlankException(type);
+        }
+    };
 }

@@ -114,7 +114,7 @@ class FavoriteProductControllerTest {
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.error").value("Product already exist in favorites: 1"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
-                .andExpect(jsonPath("$.date-hour").exists());
+                .andExpect(jsonPath("$.date").exists());
     }
 
     @Test
@@ -175,7 +175,7 @@ class FavoriteProductControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Product not already register: 1"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
-                .andExpect(jsonPath("$.date-hour").exists());
+                .andExpect(jsonPath("$.date").exists());
     }
 
     @Test
@@ -199,7 +199,7 @@ class FavoriteProductControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Favorite list empty"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
-                .andExpect(jsonPath("$.date-hour").exists());
+                .andExpect(jsonPath("$.date").exists());
     }
 
     @Test
@@ -267,7 +267,7 @@ class FavoriteProductControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Product not already register: 9"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/9"))
-                .andExpect(jsonPath("$.date-hour").exists());
+                .andExpect(jsonPath("$.date").exists());
     }
 
     @Test

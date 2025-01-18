@@ -1,11 +1,14 @@
 package br.com.favoritmanager.application.usecase;
 
+import br.com.favoritmanager.adapter.input.DTO.ClientAndListFavoritesResponseDTO;
 import br.com.favoritmanager.adapter.input.DTO.ClientResponseDTO;
 import br.com.favoritmanager.adapter.input.DTO.ClientRequestDTO;
 import br.com.favoritmanager.adapter.output.ClientPersistencePort;
 import br.com.favoritmanager.core.model.Client;
 import br.com.favoritmanager.core.exception.EmailAlreadyRegisterException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClientUseCaseImpl implements ClientUseCase {
@@ -43,6 +46,12 @@ public class ClientUseCaseImpl implements ClientUseCase {
     @Override
     public void deleteClient(Long id) {
         clientPersistencePort.deleteClient(id);
+    }
+
+    @Override
+    public List<ClientAndListFavoritesResponseDTO> getAllClients(boolean favorites) {
+        List<Client> clientList = clientPersistencePort.findAll();
+        return clientList.stream().map(ClientAndListFavoritesResponseDTO::toResponse).toList();
     }
 
     private static boolean isEmailNotEquals(ClientRequestDTO clientRequestDTO, Client client) {
