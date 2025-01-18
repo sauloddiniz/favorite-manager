@@ -1,6 +1,5 @@
 package br.com.favoritmanager.application.usecase;
 
-import br.com.favoritmanager.adapter.ClientPersistenceAdapter;
 import br.com.favoritmanager.adapter.ProductClientAdapter;
 import br.com.favoritmanager.adapter.input.DTO.ClientAndListFavoritesResponseDTO;
 import br.com.favoritmanager.adapter.output.ClientPersistencePort;
@@ -24,7 +23,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
     private final ProductPersistencePort productPersistencePort;
     private final ProductClientPort productClientAdapter;
 
-    public ProductUseCaseImpl(ProductPersistencePort productPersistencePort, ClientPersistenceAdapter clientPersistenceAdapter, ProductClientPort productClientPort, ClientPersistencePort clientPersistencePort, ProductClientAdapter productClientAdapter) {
+    public ProductUseCaseImpl(ProductPersistencePort productPersistencePort, ClientPersistencePort clientPersistencePort, ProductClientAdapter productClientAdapter) {
         this.productPersistencePort = productPersistencePort;
         this.clientPersistencePort = clientPersistencePort;
         this.productClientAdapter = productClientAdapter;
@@ -35,7 +34,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
         Client client = clientPersistencePort.getClientById(clientId);
         Product product = productClientAdapter.getProductByIdLuizaLabs(productLuizaLabsId);
         boolean isSuccesses = client.addProductInFavorite(product);
-        validAddProductInFavorite(isSuccesses, productLuizaLabsId);
+        validateFavoriteAddition(isSuccesses, productLuizaLabsId);
         productPersistencePort.saveProduct(product);
     }
 
@@ -46,7 +45,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
     }
 
     @Override
-    public void removeProductFavorites(Long clientId, Long productIdLuizaLabs) {
+    public void removeFavoriteProduct(Long clientId, Long productIdLuizaLabs) {
         Client client = clientPersistencePort.getClientById(clientId);
         Product product = findFavoriteProduct(client.getFavoriteProducts(), productIdLuizaLabs);
         product.setClient(client);
@@ -57,7 +56,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
     public ClientAndListFavoritesResponseDTO getFavorite(Long clientId, Long productIdLuizaLabs) {
         Client client = clientPersistencePort.getClientById(clientId);
         Product product = findFavoriteProduct(client.getFavoriteProducts(), productIdLuizaLabs);
-        client.onlyRegister(product);
+        client.getOnlyRegister(product);
         return ClientAndListFavoritesResponseDTO.toResponse(client);
     }
 
@@ -75,7 +74,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
         return set -> !set.isEmpty();
     }
 
-    private void validAddProductInFavorite(boolean isSuccesses, Long productLuizaLabsId) {
+    private void validateFavoriteAddition(boolean isSuccesses, Long productLuizaLabsId) {
         if (Boolean.FALSE.equals(isSuccesses)) {
             throw new ProductAlreadyExistException(productLuizaLabsId.toString());
         }

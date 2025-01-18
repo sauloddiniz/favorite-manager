@@ -29,8 +29,8 @@ public class FavoriteProductController {
     }
 
     @DeleteMapping("/product/{productIdLuizaLabs}")
-    public ResponseEntity<Void> removeProductFavorites(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
-        productUseCase.removeProductFavorites(clientId, productIdLuizaLabs);
+    public ResponseEntity<Void> removeFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
+        productUseCase.removeFavoriteProduct(clientId, productIdLuizaLabs);
         return ResponseEntity.noContent().build();
     }
 
@@ -41,7 +41,7 @@ public class FavoriteProductController {
     }
 
     @GetMapping()
-    public ResponseEntity<ClientAndListFavoritesResponseDTO> GetFavorites(@PathVariable Long clientId) {
+    public ResponseEntity<ClientAndListFavoritesResponseDTO> getAllFavorites(@PathVariable Long clientId) {
         ClientAndListFavoritesResponseDTO response = productUseCase.getProducts(clientId);
         return ResponseEntity.ok(response);
     }

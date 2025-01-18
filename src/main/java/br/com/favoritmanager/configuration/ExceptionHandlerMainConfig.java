@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class ExceptionHandlerMain {
+public class ExceptionHandlerMainConfig {
 
     @ExceptionHandler(EmailAlreadyRegisterException.class)
     public ResponseEntity<Object> emailAlreadyRegisterException(EmailAlreadyRegisterException ex, HttpServletRequest request) {
@@ -27,7 +27,7 @@ public class ExceptionHandlerMain {
     }
 
     @ExceptionHandler(ClientNotFoundException.class)
-    public ResponseEntity<Object> emptyResultDataAccessException(ClientNotFoundException ex, HttpServletRequest request) {
+    public ResponseEntity<Object> clientNotFoundException(ClientNotFoundException ex, HttpServletRequest request) {
         Map<String, Object> body = extractErrorInfo(ex, request);
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }

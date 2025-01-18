@@ -52,7 +52,7 @@ public class Client {
         return favoriteProducts;
     }
 
-    public void onlyRegister(Product favoriteProducts) {
+    public void getOnlyRegister(Product favoriteProducts) {
         this.favoriteProducts = Set.of(favoriteProducts);
     }
 
