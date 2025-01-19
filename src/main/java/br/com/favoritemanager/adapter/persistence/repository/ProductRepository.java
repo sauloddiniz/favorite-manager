@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Modifying
-    @Query("DELETE FROM ProductEntity WHERE client.clientId = :clientId AND productIdLuizaLabs = :productIdLuizaLabs")
-    void deleteByClientIdAndProductIdLuizaLabs(@Param("clientId") Long clientId,
-                                               @Param("productIdLuizaLabs") Long productIdLuizaLabs);
+    @Query("DELETE FROM ProductEntity WHERE client.clientId = :clientId AND productId = :productId")
+    void deleteByClientIdAndProductId(@Param("clientId") Long clientId,
+                                               @Param("productId") Long productId);
 }

@@ -18,25 +18,25 @@ public class FavoriteProductController {
         this.productUseCase = productUseCase;
     }
 
-    @PostMapping("/product/{productIdLuizaLabs}")
-    public ResponseEntity<Void> saveFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
-        productUseCase.saveProduct(clientId, productIdLuizaLabs);
+    @PostMapping("/product/{productId}")
+    public ResponseEntity<Void> saveFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productId) {
+        productUseCase.saveProduct(clientId, productId);
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/client/{clientId}/favorites/product/{productIdLuizaLabs}")
-                .buildAndExpand(clientId.toString(), productIdLuizaLabs.toString())
+                .fromCurrentContextPath().path("/client/{clientId}/favorites/product/{productId}")
+                .buildAndExpand(clientId.toString(), productId.toString())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/product/{productIdLuizaLabs}")
-    public ResponseEntity<Void> removeFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
-        productUseCase.removeFavoriteProduct(clientId, productIdLuizaLabs);
+    @DeleteMapping("/product/{productId}")
+    public ResponseEntity<Void> removeFavoriteProduct(@PathVariable Long clientId, @PathVariable Long productId) {
+        productUseCase.removeFavoriteProduct(clientId, productId);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/product/{productIdLuizaLabs}")
-    public ResponseEntity<ClientAndListFavoritesResponseDTO> getFavorite(@PathVariable Long clientId, @PathVariable Long productIdLuizaLabs) {
-        ClientAndListFavoritesResponseDTO response = productUseCase.getFavorite(clientId, productIdLuizaLabs);
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<ClientAndListFavoritesResponseDTO> getFavorite(@PathVariable Long clientId, @PathVariable Long productId) {
+        ClientAndListFavoritesResponseDTO response = productUseCase.getFavorite(clientId, productId);
         return ResponseEntity.ok(response);
     }
 

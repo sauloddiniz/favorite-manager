@@ -59,13 +59,12 @@ class FavoriteProductControllerTest {
         ProductEntity mockProduct = ProductEntity.builder()
                 .productId(1L)
                 .image("http://minhaimage.png")
-                .productIdLuizaLabs(1L)
                 .price(88.55)
                 .title("Produto Oficial")
                 .build();
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong()))
                 .thenReturn(mockClient);
@@ -75,7 +74,7 @@ class FavoriteProductControllerTest {
                 .thenReturn(mockProduct);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .post("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isCreated());
     }
 
@@ -90,7 +89,6 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
-                                .productIdLuizaLabs(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -103,14 +101,14 @@ class FavoriteProductControllerTest {
                 new ProductResponseDTO(1L, "http://minhaimage.png", 88.55, "Produto Oficial", "4.5");
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
         when(productClientApiFeign.getProductByIdLuizaLabs(anyLong()))
                 .thenReturn(new ResponseEntity<>(mockResponseApi, HttpStatus.OK));
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .post("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.error").value("Product already exist in favorites: 1"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
@@ -128,7 +126,6 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
-                                .productIdLuizaLabs(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -137,12 +134,12 @@ class FavoriteProductControllerTest {
                 .build());
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .delete("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isNoContent());
     }
 
@@ -157,7 +154,6 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(3L)
-                                .productIdLuizaLabs(3L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -166,12 +162,12 @@ class FavoriteProductControllerTest {
                 .build());
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .delete("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Product not already register: 1"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
@@ -190,12 +186,12 @@ class FavoriteProductControllerTest {
                 .build());
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .delete("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Favorite list empty"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/1"))
@@ -213,7 +209,6 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
-                                .productIdLuizaLabs(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -222,12 +217,12 @@ class FavoriteProductControllerTest {
                 .build());
 
         String clientId = "1";
-        String productIdLuizaLabs = "1";
+        String productId = "1";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .get("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Bruce Wayne"))
                 .andExpect(jsonPath("$.email").value("batman@morcegao.com"))
@@ -249,7 +244,6 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
-                                .productIdLuizaLabs(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -258,12 +252,12 @@ class FavoriteProductControllerTest {
                 .build());
 
         String clientId = "1";
-        String productIdLuizaLabs = "9";
+        String productId = "9";
 
         when(clientRepository.findById(anyLong())).thenReturn(mockClient);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/client/{clientId}/favorites/product/{productIdLuizaLabs}", clientId, productIdLuizaLabs))
+                        .get("/client/{clientId}/favorites/product/{productId}", clientId, productId))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Product not already register: 9"))
                 .andExpect(jsonPath("$.path").value("/client/1/favorites/product/9"))
@@ -281,7 +275,6 @@ class FavoriteProductControllerTest {
                         Set.of(
                                 ProductEntity.builder()
                                         .productId(1L)
-                                        .productIdLuizaLabs(1L)
                                         .image("http://minhaimage.png")
                                         .title("Produto Oficial 1")
                                         .price(88.55)
@@ -289,7 +282,6 @@ class FavoriteProductControllerTest {
                                         .build(),
                                 ProductEntity.builder()
                                         .productId(2L)
-                                        .productIdLuizaLabs(2L)
                                         .image("http://minhaimage2.png")
                                         .title("Produto Oficial 2")
                                         .price(99.99)

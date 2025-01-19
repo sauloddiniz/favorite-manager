@@ -23,14 +23,14 @@ public class ProductClientAdapter implements ProductClientPort {
     }
 
     @Override
-    public Product getProductByIdLuizaLabs(Long productIdLuizaLabs) {
+    public Product getProductByIdLuizaLabs(Long productId) {
         try {
             ResponseEntity<ProductResponseDTO> responseEntity =
-                    productClientApiFeign.getProductByIdLuizaLabs(productIdLuizaLabs);
+                    productClientApiFeign.getProductByIdLuizaLabs(productId);
             return ProductResponseDTO.toProduct(Objects.requireNonNull(responseEntity.getBody()));
         } catch (FeignClientException exception) {
             if (isProductNotFound(exception)) {
-                throw new ProductNotAlreadyRegister(productIdLuizaLabs.toString());
+                throw new ProductNotAlreadyRegister(productId.toString());
             }
             log.error(exception.getMessage(), exception);
             throw exception;

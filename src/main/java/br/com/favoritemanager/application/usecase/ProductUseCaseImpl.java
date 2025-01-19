@@ -30,11 +30,11 @@ public class ProductUseCaseImpl implements ProductUseCase {
     }
 
     @Override
-    public void saveProduct(Long clientId, Long productLuizaLabsId) {
+    public void saveProduct(Long clientId, Long productId) {
         Client client = clientPersistencePort.getClientById(clientId);
-        Product product = productClientAdapter.getProductByIdLuizaLabs(productLuizaLabsId);
+        Product product = productClientAdapter.getProductByIdLuizaLabs(productId);
         boolean isSuccesses = client.addProductInFavorite(product);
-        validateFavoriteAddition(isSuccesses, productLuizaLabsId);
+        validateFavoriteAddition(isSuccesses, productId);
         productPersistencePort.saveProduct(product);
     }
 
@@ -45,38 +45,38 @@ public class ProductUseCaseImpl implements ProductUseCase {
     }
 
     @Override
-    public void removeFavoriteProduct(Long clientId, Long productIdLuizaLabs) {
+    public void removeFavoriteProduct(Long clientId, Long productId) {
         Client client = clientPersistencePort.getClientById(clientId);
-        Product product = findFavoriteProduct(client.getFavoriteProducts(), productIdLuizaLabs);
+        Product product = findFavoriteProduct(client.getFavoriteProducts(), productId);
         product.setClient(client);
         productPersistencePort.deleteProduct(product);
     }
 
     @Override
-    public ClientAndListFavoritesResponseDTO getFavorite(Long clientId, Long productIdLuizaLabs) {
+    public ClientAndListFavoritesResponseDTO getFavorite(Long clientId, Long productId) {
         Client client = clientPersistencePort.getClientById(clientId);
-        Product product = findFavoriteProduct(client.getFavoriteProducts(), productIdLuizaLabs);
+        Product product = findFavoriteProduct(client.getFavoriteProducts(), productId);
         client.getOnlyRegister(product);
         return ClientAndListFavoritesResponseDTO.toResponse(client);
     }
 
-    private Product findFavoriteProduct(Set<Product> favoriteProducts, Long productIdLuizaLabs) {
+    private Product findFavoriteProduct(Set<Product> favoriteProducts, Long productId) {
         return Optional.ofNullable(favoriteProducts)
                 .filter(isNotEmpty())
                 .orElseThrow(FavoriteListEmptyException::new)
                 .stream()
-                .filter(product -> product.getProductIdLuizaLabs().equals(productIdLuizaLabs))
+                .filter(product -> product.getProductId().equals(productId))
                 .findFirst()
-                .orElseThrow(() -> new ProductNotAlreadyRegister(productIdLuizaLabs.toString()));
+                .orElseThrow(() -> new ProductNotAlreadyRegister(productId.toString()));
     }
 
     private static Predicate<Set<Product>> isNotEmpty() {
         return set -> !set.isEmpty();
     }
 
-    private void validateFavoriteAddition(boolean isSuccesses, Long productLuizaLabsId) {
+    private void validateFavoriteAddition(boolean isSuccesses, Long productId) {
         if (Boolean.FALSE.equals(isSuccesses)) {
-            throw new ProductAlreadyExistException(productLuizaLabsId.toString());
+            throw new ProductAlreadyExistException(productId.toString());
         }
     }
 }

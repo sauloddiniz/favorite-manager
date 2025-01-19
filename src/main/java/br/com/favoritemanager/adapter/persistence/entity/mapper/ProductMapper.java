@@ -12,8 +12,7 @@ public class ProductMapper {
 
     public static ProductEntity toEntity(Product product) {
         return ProductEntity.builder()
-                .productId(product.getId())
-                .productIdLuizaLabs(product.getProductIdLuizaLabs())
+                .productId(product.getProductId())
                 .title(product.getTitle())
                 .price(product.getPrice())
                 .image(product.getImage())
@@ -27,7 +26,6 @@ public class ProductMapper {
     public static Product toModel(ProductEntity productEntity) {
         return new Product(
                 productEntity.getProductId(),
-                productEntity.getProductIdLuizaLabs(),
                 productEntity.getImage(),
                 productEntity.getPrice(),
                 productEntity.getTitle(),

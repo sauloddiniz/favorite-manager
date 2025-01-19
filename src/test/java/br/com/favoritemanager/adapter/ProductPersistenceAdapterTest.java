@@ -29,7 +29,6 @@ class ProductPersistenceAdapterTest {
     void testSaveProduct_Success() {
         Product product = new Product(
                 1L,
-                12345L,
                 "https://image.url",
                 99.99,
                 "Product Title",
@@ -49,7 +48,6 @@ class ProductPersistenceAdapterTest {
     void testDeleteProduct_Success() {
         Product product = new Product(
                 1L,
-                12345L,
                 "https://image.url",
                 99.99,
                 "Product Title",
@@ -58,12 +56,12 @@ class ProductPersistenceAdapterTest {
         ProductEntity productEntity = ProductMapper.toEntity(product);
 
         doNothing().when(productRepository)
-                .deleteByClientIdAndProductIdLuizaLabs(productEntity.getClient().getClientId(), productEntity.getProductIdLuizaLabs());
+                .deleteByClientIdAndProductId(productEntity.getClient().getClientId(), productEntity.getProductId());
 
         productPersistenceAdapter.deleteProduct(product);
 
         verify(productRepository, times(1))
-                .deleteByClientIdAndProductIdLuizaLabs(productEntity.getClient().getClientId(), productEntity.getProductIdLuizaLabs());
+                .deleteByClientIdAndProductId(productEntity.getClient().getClientId(), productEntity.getProductId());
     }
 
     @Test
@@ -71,7 +69,6 @@ class ProductPersistenceAdapterTest {
     void testDeleteProduct_WithMissingProduct() {
         Product product = new Product(
                 1L,
-                67890L,
                 "https://another.url",
                 49.99,
                 "Another Title",
@@ -81,7 +78,7 @@ class ProductPersistenceAdapterTest {
 
         doThrow(new RuntimeException("Product not found"))
                 .when(productRepository)
-                .deleteByClientIdAndProductIdLuizaLabs(productEntity.getClient().getClientId(), productEntity.getProductIdLuizaLabs());
+                .deleteByClientIdAndProductId(productEntity.getClient().getClientId(), productEntity.getProductId());
 
         try {
             productPersistenceAdapter.deleteProduct(product);
@@ -90,6 +87,6 @@ class ProductPersistenceAdapterTest {
         }
 
         verify(productRepository, times(1))
-                .deleteByClientIdAndProductIdLuizaLabs(productEntity.getClient().getClientId(), productEntity.getProductIdLuizaLabs());
+                .deleteByClientIdAndProductId(productEntity.getClient().getClientId(), productEntity.getProductId());
     }
 }

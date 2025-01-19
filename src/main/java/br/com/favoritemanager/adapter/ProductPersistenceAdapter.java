@@ -27,7 +27,7 @@ public class ProductPersistenceAdapter implements ProductPersistencePort {
     @Transactional
     public void deleteProduct(Product product) {
         ProductEntity productEntity = ProductMapper.toEntity(product);
-        productRepository.deleteByClientIdAndProductIdLuizaLabs(productEntity.getClient().getClientId(), productEntity.getProductIdLuizaLabs());
+        productRepository.deleteByClientIdAndProductId(productEntity.getClient().getClientId(), productEntity.getProductId());
     }
 
 }
