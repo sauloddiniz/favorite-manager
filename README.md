@@ -1,32 +1,64 @@
-## Favorite Manager
+# Favorite Manager
 
-#### O 'Favorite Manager' foi desenvolvido com foco em atender as necessidades da Magalu para gerenciar os produtos favoritos de seus clientes. Esta aplicação permite criar, listar, atualizar e remover clientes, além de gerenciar a lista de produtos favoritos dos mesmos. Há regras de negócio que garantem a validação das operações, como evitar duplicidades de e-mails e listas de favoritos únicas por cliente.
+O `Favorite Manager` foi desenvolvido para atender às necessidades da **Magalu** no gerenciamento dos produtos favoritos de seus clientes. Esta aplicação permite criar, listar, atualizar e remover clientes, além de gerenciar a lista de produtos favoritos. Regras de negócio garantem a correta validação das operações, como evitar duplicidade de e-mails e listas únicas de favoritos por cliente.
 
-## <a name="guia-de-uso"></a>Guia de uso
-### <a name="pre-requisitos-local"></a>Pré-requisitos ambiente local
-Antes de começar, certifique-se de ter os seguintes requisitos instalados no seu sistema:
+---
 
-- Java 17: Certifique-se de ter o JDK (Java Development Kit) 17 ou uma versão superior instalada no seu sistema.
-- Gradle: O projeto requer o Gradle para gerenciamento de dependências e compilação. Certifique-se de ter o Gradle instalado no seu sistema.
-- Docker: O projeto requer o Docker para executar o banco de dados PostgreSQL em modo de produção. Certifique-se de ter o Docker instalado no seu sistema.
+## Guia de Uso
 
-### <a name="executar-api"></a>Executar
-### <a name="ambiente-local"></a>Ambiente local
-**No diretório raiz do projeto, execute os comandos na ordem descrita abaixo. Este profile utiliza o banco de dados H2, facilitando o início rápido (starter) do projeto.**
+### Pré-requisitos para ambiente local
 
-````
-./gradle bootRun --args='--spring.profiles.active=local'
-````
+Antes de começar, certifique-se de que o seu ambiente possui as seguintes ferramentas configuradas:
 
-### <a name="ambiente-local"></a>Ambiente producao
-**No diretório raiz do projeto, execute os comandos na ordem descrita abaixo. Este profile utiliza o banco de postgres.**
-````
-./gradle build
-````
-````
-docker-compose up
-````
+- **Java 17**: Certifique-se de ter o JDK (Java Development Kit) 17 ou uma versão superior instalado no sistema.
+- **Gradle**: Necessário para o gerenciamento de dependências e compilação do projeto. [Guia de instalação do Gradle](https://gradle.org/install).
+- **Docker**: Para o ambiente de produção, o projeto utiliza um banco de dados **PostgreSQL** executado via Docker. [Guia de instalação do Docker](https://docs.docker.com/get-docker/).
 
-### Documentacao dos controladores
-Com o projeto em execução
-* [Swagger-local](http://localhost:8080/swagger-ui/index.html)
+---
+
+### Executar a API
+
+#### Ambiente local
+Para um início rápido, utilize o banco **H2** (banco em memória), que está configurado no perfil **local**.
+
+1. No diretório raiz do projeto, execute o seguinte comando:
+   ```bash
+   ./gradlew bootRun --args='--spring.profiles.active=local'
+   ```
+
+Este comando iniciará a aplicação localmente com o banco de dados **H2** configurado automaticamente.
+
+---
+
+#### Ambiente de produção
+Para execução em ambiente de produção, o projeto utiliza o banco de dados **PostgreSQL**. Siga os passos abaixo:
+
+1. Construa o projeto:
+   ```bash
+   ./gradlew build
+   ```
+
+2. Inicie os containers Docker:
+    - Certifique-se de que o Docker está instalado e em execução no sistema.
+    - No diretório raiz do projeto, execute:
+      ```bash
+      docker-compose up
+      ```
+
+---
+
+### Documentação dos Controladores
+
+Com o projeto em execução, acesse a documentação da API no **Swagger** através do seguinte link:
+
+- **Ambiente local**:
+    - [Swagger UI - Local](http://localhost:8080/swagger-ui/index.html)
+
+---
+
+### Observações
+
+- Certifique-se de que o `JAVA_HOME` esteja configurado corretamente no sistema para que o Gradle funcione sem problemas.
+- Caso tenha dúvidas ou dificuldades, consulte a [documentação do Gradle](https://docs.gradle.org/current/userguide/userguide.html) ou [documentação do Docker](https://docs.docker.com/).
+
+---
