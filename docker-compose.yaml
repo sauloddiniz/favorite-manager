@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-container
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/favoritemanager?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: my_user
+      SPRING_DATASOURCE_PASSWORD: my_secret
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret
+      MYSQL_DATABASE: favoritemanager
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_secret
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
