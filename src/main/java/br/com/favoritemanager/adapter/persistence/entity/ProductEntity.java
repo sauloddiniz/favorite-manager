@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCT")
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -18,11 +17,9 @@ public class ProductEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID")
-    @EqualsAndHashCode.Include
     private Long productId;
 
     @Column(name = "PRODUCT_ID_LUIZA_LABS")
-    @EqualsAndHashCode.Include
     private Long productIdLuizaLabs;
 
     @Column(name = "IMAGE")
@@ -32,7 +29,6 @@ public class ProductEntity implements Serializable {
     private Double price;
 
     @Column(name = "TITLE")
-    @EqualsAndHashCode.Include
     private String title;
 
     @Column(name = "REVIEW_SCORE")
@@ -40,6 +36,5 @@ public class ProductEntity implements Serializable {
 
     @ManyToOne()
     @JoinColumn(name = "CLIENT_ID")
-    @EqualsAndHashCode.Include
     private ClientEntity client;
 }

@@ -12,7 +12,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/favoritemanager?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: my_user
       SPRING_DATASOURCE_PASSWORD: my_secret
-      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
     depends_on:
       - db
 
