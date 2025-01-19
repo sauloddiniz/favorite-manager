@@ -11,7 +11,3 @@ spring:
 
 api:
   url: "https://favorit-product-luiza-labs.free.beeceptor.com"
-
-logging:
-  level:
-    org.flywaydb: DEBUG
