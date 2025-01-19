@@ -13,20 +13,15 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados no se
 ### <a name="executar-api"></a>Executar
 ### <a name="ambiente-local"></a>Ambiente local
 **No diretório raiz do projeto, execute os comandos na ordem descrita abaixo. Este profile utiliza o banco de dados H2, facilitando o início rápido (starter) do projeto.**
+
 ````
-gradle wrapper
-````
-````
-gradle bootRun --args='--spring.profiles.active=local'
+./gradle bootRun --args='--spring.profiles.active=local'
 ````
 
 ### <a name="ambiente-local"></a>Ambiente producao
 **No diretório raiz do projeto, execute os comandos na ordem descrita abaixo. Este profile utiliza o banco de postgres.**
 ````
-gradle wrapper
-````
-````
-gradle build
+./gradle build
 ````
 ````
 docker-compose up
