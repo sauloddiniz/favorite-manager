@@ -6,7 +6,7 @@ import lombok.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "product", schema = "favorite")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
