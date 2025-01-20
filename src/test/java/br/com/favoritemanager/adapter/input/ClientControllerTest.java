@@ -303,6 +303,7 @@ class ClientControllerTest {
                         .favoriteProducts(Set.of(
                                 ProductEntity.builder()
                                         .productId(101L)
+                                        .productExternalId(101L)
                                         .title("Batsuit")
                                         .image("batsuit-image.jpg")
                                         .price(1000000.0)
@@ -310,6 +311,7 @@ class ClientControllerTest {
                                         .build(),
                                 ProductEntity.builder()
                                         .productId(102L)
+                                        .productExternalId(102L)
                                         .title("Batmobile")
                                         .image("batmobile-image.jpg")
                                         .price(5000000.0)
@@ -325,6 +327,7 @@ class ClientControllerTest {
                         .favoriteProducts(Set.of(
                                 ProductEntity.builder()
                                         .productId(201L)
+                                        .productExternalId(201L)
                                         .title("Super Cape")
                                         .image("super-cape-image.jpg")
                                         .price(200000.0)
@@ -340,6 +343,7 @@ class ClientControllerTest {
                         .favoriteProducts(Set.of(
                                 ProductEntity.builder()
                                         .productId(301L)
+                                        .productExternalId(301L)
                                         .title("Lasso of Truth")
                                         .image("lasso-image.jpg")
                                         .price(1500000.0)
@@ -347,6 +351,7 @@ class ClientControllerTest {
                                         .build(),
                                 ProductEntity.builder()
                                         .productId(302L)
+                                        .productExternalId(302L)
                                         .title("Bracelets of Submission")
                                         .image("bracelets-image.jpg")
                                         .price(400000.0)

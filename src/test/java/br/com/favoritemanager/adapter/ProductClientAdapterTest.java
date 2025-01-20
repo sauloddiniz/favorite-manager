@@ -47,7 +47,7 @@ class ProductClientAdapterTest {
         Product result = productClientAdapter.getProductByIdLuizaLabs(validProductId);
 
         assertNotNull(result);
-        assertEquals(validProductId, result.getProductId());
+        assertEquals(validProductId, result.getProductExternalId());
         assertEquals("http://example.com/image.jpg", result.getImage());
         assertEquals(99.99, result.getPrice());
         assertEquals("Sample Product", result.getTitle());

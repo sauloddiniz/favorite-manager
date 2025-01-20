@@ -9,6 +9,10 @@ public record ProductResponseDTO(Long id, String image, Double price, String tit
     }
 
     public static ProductResponseDTO toResponse(Product product) {
-        return new ProductResponseDTO(product.getProductId(), product.getImage(), product.getPrice(), product.getTitle(), product.getReviewScore());
+        return new ProductResponseDTO(product.getProductExternalId(),
+                product.getImage(),
+                product.getPrice(),
+                product.getTitle(),
+                product.getReviewScore());
     }
 }

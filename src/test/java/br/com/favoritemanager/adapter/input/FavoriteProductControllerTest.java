@@ -58,6 +58,7 @@ class FavoriteProductControllerTest {
 
         ProductEntity mockProduct = ProductEntity.builder()
                 .productId(1L)
+                .productExternalId(1L)
                 .image("http://minhaimage.png")
                 .price(88.55)
                 .title("Produto Oficial")
@@ -89,6 +90,7 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
+                                .productExternalId(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -126,6 +128,7 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
+                                .productExternalId(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -154,6 +157,7 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(3L)
+                                .productExternalId(3L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -209,6 +213,7 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
+                                .productExternalId(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -244,6 +249,7 @@ class FavoriteProductControllerTest {
                 .favoriteProducts(
                         Set.of(ProductEntity.builder()
                                 .productId(1L)
+                                .productExternalId(1L)
                                 .image("http://minhaimage.png")
                                 .title("Produto Oficial")
                                 .price(88.55)
@@ -275,6 +281,7 @@ class FavoriteProductControllerTest {
                         Set.of(
                                 ProductEntity.builder()
                                         .productId(1L)
+                                        .productExternalId(1L)
                                         .image("http://minhaimage.png")
                                         .title("Produto Oficial 1")
                                         .price(88.55)
@@ -282,6 +289,7 @@ class FavoriteProductControllerTest {
                                         .build(),
                                 ProductEntity.builder()
                                         .productId(2L)
+                                        .productExternalId(2L)
                                         .image("http://minhaimage2.png")
                                         .title("Produto Oficial 2")
                                         .price(99.99)

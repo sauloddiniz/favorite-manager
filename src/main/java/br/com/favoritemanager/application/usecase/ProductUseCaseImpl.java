@@ -65,7 +65,7 @@ public class ProductUseCaseImpl implements ProductUseCase {
                 .filter(isNotEmpty())
                 .orElseThrow(FavoriteListEmptyException::new)
                 .stream()
-                .filter(product -> product.getProductId().equals(productId))
+                .filter(product -> product.getProductExternalId().equals(productId))
                 .findFirst()
                 .orElseThrow(() -> new ProductNotAlreadyRegister(productId.toString()));
     }

@@ -15,8 +15,12 @@ import java.io.Serializable;
 public class ProductEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID")
     private Long productId;
+
+    @Column(name = "PRODUCT_EXTERNAL_ID")
+    private Long productExternalId;
 
     @Column(name = "IMAGE")
     private String image;
