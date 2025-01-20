@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ProductClientApiFeign {
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/products/{id}")
     @Cacheable(value = "product-cached", key = "#id")
     ResponseEntity<ProductResponseDTO> getProductByIdLuizaLabs(@PathVariable Long id);
 }

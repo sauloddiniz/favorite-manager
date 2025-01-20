@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/products/2"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"id\":2,\"image\":\"https://example.com/images/product2.jpg\",\"price\":199.99,\"title\":\"Batmovel\",\"reviewScore\":\"5.0\"}"
+  }
+}

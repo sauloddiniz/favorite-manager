@@ -167,7 +167,7 @@ paths:
           description: Cliente não encontrado
         500:
           description: Erro interno no servidor
-  /client/{clientId}/favorites/{productId}:
+  /client/{clientId}/favorites/product/{productId}:
     post:
       tags:
         - favorite
@@ -190,8 +190,8 @@ paths:
       responses:
         201:
           description: Produto adicionado com sucesso
-        400:
-          description: Produto inválido ou já presente na lista de favoritos
+        409:
+          description: Produto já presente na lista de favoritos
         404:
           description: Cliente ou produto não encontrado
         500:

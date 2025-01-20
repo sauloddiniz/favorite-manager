@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/products/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"id\":1,\"image\":\"https://example.com/images/product1.jpg\",\"price\":499.99,\"title\":\"Smartphone Galaxy S22\",\"reviewScore\":\"4.8\"}"
+  }
+}

@@ -10,4 +10,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 api:
-  url: "https://favorit-product-luiza-labs.free.beeceptor.com"
+  url: "https://localhost:8081/"
