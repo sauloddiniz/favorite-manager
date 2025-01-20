@@ -52,6 +52,10 @@ public class Client {
         return favoriteProducts;
     }
 
+    public void setFavoriteProducts(Set<Product> favoriteProducts) {
+        this.favoriteProducts = favoriteProducts;
+    }
+
     public void getOnlyRegister(Product favoriteProducts) {
         this.favoriteProducts = Set.of(favoriteProducts);
     }

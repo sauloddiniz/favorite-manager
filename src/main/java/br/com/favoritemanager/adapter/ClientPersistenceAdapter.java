@@ -50,6 +50,8 @@ public class ClientPersistenceAdapter implements ClientPersistencePort {
     @Override
     public List<Client> findAll() {
         List<ClientEntity> clientEntities = clientRepository.findAll();
-        return clientEntities.stream().map(ClientMapper::toModel).toList();
+        return clientEntities.isEmpty()
+                ? List.of()
+                : clientEntities.stream().map(ClientMapper::toModel).toList();
     }
 }

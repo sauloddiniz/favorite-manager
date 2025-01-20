@@ -59,7 +59,7 @@ sonarqube {
         property "sonar.projectKey", "favoritos-clientes"
         property "sonar.host.url", "http://localhost:9000"
         property "sonar.login", "admin"
-        property "sonar.password", "merda22"
+        property "sonar.password", "administrator"
         property "sonar.sources", "src/main/java"
         property "sonar.tests", "src/test/java"
         property "sonar.junit.reportPaths", "build/test-results/test"

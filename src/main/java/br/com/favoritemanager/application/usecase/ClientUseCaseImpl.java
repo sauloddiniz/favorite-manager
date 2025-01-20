@@ -9,6 +9,7 @@ import br.com.favoritemanager.core.exception.EmailAlreadyRegisterException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 
 @Service
 public class ClientUseCaseImpl implements ClientUseCase {
@@ -51,7 +52,12 @@ public class ClientUseCaseImpl implements ClientUseCase {
     @Override
     public List<ClientAndListFavoritesResponseDTO> getAllClients(boolean favorites) {
         List<Client> clientList = clientPersistencePort.findAll();
-        return clientList.stream().map(ClientAndListFavoritesResponseDTO::toResponse).toList();
+        return clientList.isEmpty()
+                ? List.of()
+                : clientList.stream()
+                .map(filterFavorites(favorites))
+                .map(ClientAndListFavoritesResponseDTO::toResponse)
+                .toList();
     }
 
     private static boolean isEmailNotEquals(ClientRequestDTO clientRequestDTO, Client client) {
@@ -62,5 +68,14 @@ public class ClientUseCaseImpl implements ClientUseCase {
         if (clientPersistencePort.existsClient(email)) {
             throw new EmailAlreadyRegisterException(email);
         }
+    }
+
+    private static Function<Client, Client> filterFavorites(boolean favorites) {
+        return client -> {
+            if (Boolean.FALSE.equals(favorites)) {
+                client.setFavoriteProducts(null);
+            }
+            return client;
+        };
     }
 }

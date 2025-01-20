@@ -48,7 +48,15 @@ paths:
         - client
       operationId: getClients
       summary: Lista todos os clientes
-      description: Este endpoint retorna a lista de todos os clientes cadastrados no sistema.
+      description: Este endpoint retorna a lista de todos os clientes cadastrados no sistema. É possível, opcionalmente, informar se os produtos favoritos dos clientes devem ser retornados.
+      parameters:
+        - name: favorites
+          in: query
+          description: Indica se os produtos favoritos devem ser retornados (`true` ou `false`).
+          required: false
+          schema:
+            type: boolean
+            example: true
       responses:
         200:
           description: Lista de clientes retornada com sucesso
@@ -57,7 +65,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ClientResponseDTO'
+                  $ref: '#/components/schemas/ClientAndListFavoritesResponseDTO'
         500:
           description: Erro interno no servidor
   /client/{clientId}:
@@ -154,7 +162,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ProductResponseDTO'
+                  $ref: '#/components/schemas/ClientAndListFavoritesResponseDTO'
         404:
           description: Cliente não encontrado
         500:
@@ -217,6 +225,22 @@ paths:
 
 components:
   schemas:
+    ClientAndListFavoritesResponseDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nome do cliente
+          example: "Bruce Wayne"
+        email:
+          type: string
+          description: E-mail do cliente
+          example: "batman@morcegao.com"
+        favoritesProducts:
+          type: array
+          description: Lista de produtos favoritos do cliente (vazia se `favorites=false`)
+          items:
+            $ref: '#/components/schemas/ProductResponseDTO'
     ClientRequestDTO:
       type: object
       properties:
