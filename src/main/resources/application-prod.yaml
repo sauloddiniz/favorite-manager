@@ -10,4 +10,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 api:
-  url: "https://localhost:8081/"
+  url: "http://challenge-api.luizalabs.com"
