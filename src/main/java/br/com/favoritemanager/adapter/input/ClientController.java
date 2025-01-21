@@ -35,9 +35,7 @@ public class ClientController {
     @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> getClient(@PathVariable Long id) {
         ClientResponseDTO responseDTO = clientUseCase.getClient(id);
-        return responseDTO == null ?
-                ResponseEntity.notFound().build() :
-                ResponseEntity.ok(responseDTO);
+        return ResponseEntity.ok(responseDTO);
     }
 
     @GetMapping()
