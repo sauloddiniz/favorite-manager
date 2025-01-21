@@ -41,6 +41,8 @@ paths:
                 type: string
         400:
           description: Dados inválidos
+        409:
+          description: Conflito
         500:
           description: Erro interno no servidor
     get:
@@ -118,6 +120,8 @@ paths:
           description: Solicitação inválida
         404:
           description: Cliente não encontrado
+        409:
+          description: Conflito
         500:
           description: Erro interno no servidor
     delete:
