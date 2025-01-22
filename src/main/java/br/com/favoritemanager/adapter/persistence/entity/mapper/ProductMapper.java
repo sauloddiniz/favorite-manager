@@ -15,6 +15,7 @@ public class ProductMapper {
                 .productId(product.getProductId())
                 .productExternalId(product.getProductExternalId())
                 .title(product.getTitle())
+                .brand(product.getBrand())
                 .price(product.getPrice())
                 .image(product.getImage())
                 .reviewScore(product.getReviewScore())
@@ -29,6 +30,7 @@ public class ProductMapper {
                 productEntity.getProductId(),
                 productEntity.getProductExternalId(),
                 productEntity.getImage(),
+                productEntity.getBrand(),
                 productEntity.getPrice(),
                 productEntity.getTitle(),
                 productEntity.getReviewScore());

@@ -25,6 +25,9 @@ public class ProductEntity implements Serializable {
     @Column(name = "IMAGE")
     private String image;
 
+    @Column(name = "BRAND")
+    private String brand;
+
     @Column(name = "PRICE")
     private Double price;
 

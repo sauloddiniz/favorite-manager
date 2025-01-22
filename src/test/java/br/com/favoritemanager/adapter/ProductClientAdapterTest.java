@@ -34,6 +34,7 @@ class ProductClientAdapterTest {
         ProductResponseDTO mockResponse = new ProductResponseDTO(
                 validProductId,
                 "http://example.com/image.jpg",
+                "Brand",
                 99.99,
                 "Sample Product",
                 "4.5"

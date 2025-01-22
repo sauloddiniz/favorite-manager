@@ -54,7 +54,7 @@ class FavoriteProductControllerTest {
                 .build());
 
         ProductResponseDTO mockResponseApi =
-                new ProductResponseDTO(1L, "http://minhaimage.png", 88.55, "Produto Oficial", "4.5");
+                new ProductResponseDTO(1L, "http://minhaimage.png", "Lego",88.55, "Produto Oficial", "4.5");
 
         ProductEntity mockProduct = ProductEntity.builder()
                 .productId(1L)
@@ -92,6 +92,7 @@ class FavoriteProductControllerTest {
                                 .productId(1L)
                                 .productExternalId(1L)
                                 .image("http://minhaimage.png")
+                                .brand("Brand")
                                 .title("Produto Oficial")
                                 .price(88.55)
                                 .reviewScore("4.5")
@@ -100,7 +101,7 @@ class FavoriteProductControllerTest {
         );
 
         ProductResponseDTO mockResponseApi =
-                new ProductResponseDTO(1L, "http://minhaimage.png", 88.55, "Produto Oficial", "4.5");
+                new ProductResponseDTO(1L, "http://minhaimage.png", "Brand", 88.55, "Produto Oficial", "4.5");
 
         String clientId = "1";
         String productId = "1";
@@ -130,6 +131,7 @@ class FavoriteProductControllerTest {
                                 .productId(1L)
                                 .productExternalId(1L)
                                 .image("http://minhaimage.png")
+                                .brand("Brand")
                                 .title("Produto Oficial")
                                 .price(88.55)
                                 .reviewScore("4.5")
@@ -159,6 +161,7 @@ class FavoriteProductControllerTest {
                                 .productId(3L)
                                 .productExternalId(3L)
                                 .image("http://minhaimage.png")
+                                .brand("Brand")
                                 .title("Produto Oficial")
                                 .price(88.55)
                                 .reviewScore("4.5")

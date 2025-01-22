@@ -31,6 +31,7 @@ class ProductPersistenceAdapterTest {
                 1L,
                 1L,
                 "https://image.url",
+                "product",
                 99.99,
                 "Product Title",
                 "4.5"
@@ -51,6 +52,7 @@ class ProductPersistenceAdapterTest {
                 1L,
                 1L,
                 "https://image.url",
+                "Brand",
                 99.99,
                 "Product Title",
                 "4.5"
@@ -73,6 +75,7 @@ class ProductPersistenceAdapterTest {
                 1L,
                 1L,
                 "https://another.url",
+                "brand",
                 49.99,
                 "Another Title",
                 "4.7"

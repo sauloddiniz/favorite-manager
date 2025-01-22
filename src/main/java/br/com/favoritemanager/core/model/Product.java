@@ -8,21 +8,24 @@ public class Product {
     private String image;
     private Double price;
     private String title;
+    private String brand;
     private String reviewScore;
     private Client client;
 
-    public Product(Long productExternalId, String image, Double price, String title, String reviewScore) {
+    public Product(Long productExternalId, String image, String brand, Double price, String title, String reviewScore) {
         this.productExternalId = productExternalId;
         this.image = image;
+        this.brand = brand;
         this.price = price;
         this.title = title;
         this.reviewScore = reviewScore;
     }
 
-    public Product(Long productId, Long productExternalId, String image, Double price, String title, String reviewScore) {
+    public Product(Long productId, Long productExternalId, String image, String brand, Double price, String title, String reviewScore) {
         this.productId = productId;
         this.productExternalId = productExternalId;
         this.image = image;
+        this.brand = brand;
         this.price = price;
         this.title = title;
         this.reviewScore = reviewScore;
@@ -48,7 +51,6 @@ public class Product {
         return productId;
     }
 
-
     public Client getClient() {
         return client;
     }
@@ -61,15 +63,23 @@ public class Product {
         return productExternalId;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Objects.equals(productExternalId, product.productExternalId) && Objects.equals(image, product.image) && Objects.equals(price, product.price) && Objects.equals(title, product.title) && Objects.equals(reviewScore, product.reviewScore);
+        return Objects.equals(productExternalId, product.productExternalId) && Objects.equals(price, product.price) && Objects.equals(title, product.title) && Objects.equals(brand, product.brand) && Objects.equals(reviewScore, product.reviewScore);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productExternalId, image, price, title, reviewScore);
+        return Objects.hash(productExternalId, price, title, brand, reviewScore);
     }
 }
