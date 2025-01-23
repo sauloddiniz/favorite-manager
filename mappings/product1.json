@@ -8,6 +8,6 @@
     "headers": {
       "Content-Type": "application/json"
     },
-    "body": "{\"id\":1,\"image\":\"https://example.com/images/product1.jpg\",\"brand\":\"Sansung\",\"price\":499.99,\"title\":\"Smartphone Galaxy S22\",\"reviewScore\":\"4.8\"}"
+    "body": "{\"id\":1,\"image\":\"https://example.com/images/product1.jpg\",\"brand\":\"Samsung\",\"price\":499.99,\"title\":\"Smartphone Galaxy S22\",\"reviewScore\":\"4.8\"}"
   }
 }

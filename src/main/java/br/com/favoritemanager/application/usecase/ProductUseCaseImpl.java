@@ -1,6 +1,5 @@
 package br.com.favoritemanager.application.usecase;
 
-import br.com.favoritemanager.adapter.ProductClientAdapter;
 import br.com.favoritemanager.adapter.input.DTO.ClientAndListFavoritesResponseDTO;
 import br.com.favoritemanager.adapter.output.ClientPersistencePort;
 import br.com.favoritemanager.adapter.output.ProductClientPort;
@@ -21,18 +20,18 @@ public class ProductUseCaseImpl implements ProductUseCase {
 
     private final ClientPersistencePort clientPersistencePort;
     private final ProductPersistencePort productPersistencePort;
-    private final ProductClientPort productClientAdapter;
+    private final ProductClientPort productClientPort;
 
-    public ProductUseCaseImpl(ProductPersistencePort productPersistencePort, ClientPersistencePort clientPersistencePort, ProductClientAdapter productClientAdapter) {
+    public ProductUseCaseImpl(ProductPersistencePort productPersistencePort, ClientPersistencePort clientPersistencePort, ProductClientPort productClientPort) {
         this.productPersistencePort = productPersistencePort;
         this.clientPersistencePort = clientPersistencePort;
-        this.productClientAdapter = productClientAdapter;
+        this.productClientPort = productClientPort;
     }
 
     @Override
     public void saveProduct(Long clientId, Long productId) {
         Client client = clientPersistencePort.getClientById(clientId);
-        Product product = productClientAdapter.getProductByIdLuizaLabs(productId);
+        Product product = productClientPort.getProductByIdLuizaLabs(productId);
         boolean isSuccesses = client.addProductInFavorite(product);
         validateFavoriteAddition(isSuccesses, productId);
         productPersistencePort.saveProduct(product);
