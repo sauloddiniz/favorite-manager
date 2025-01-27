@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "luizalabs-api-product", url = "${api.url}")
 public interface ProductClientApiFeign {
 
-
     @GetMapping("/api/products/{id}")
     @Cacheable(value = "product-cached", key = "#id")
     ResponseEntity<ProductResponseDTO> getProductByIdLuizaLabs(@PathVariable Long id);
